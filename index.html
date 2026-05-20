@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutejszy Vibe — Cosmos Collection</title>
+  <meta name="description" content="Cosmos Collection — kuratorska wystawa niebieskiego szkła i obiektów z historią dla nowoczesnych wnętrz. Tutejszy Vibe, Wrocław.">
+  <style>
+    :root{
+      --bg:#070912;
+      --deep:#0d1324;
+      --paper:#f4e7cf;
+      --muted:#bbaa8d;
+      --gold:#d4a84f;
+      --orange:#e07032;
+      --red:#a93232;
+      --blue:#164a86;
+      --cosmos:#061d3a;
+      --line:rgba(244,231,207,.16);
+      --card:rgba(255,255,255,.045);
+      --shadow:0 24px 80px rgba(0,0,0,.38);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(22,74,134,.62), transparent 32%),
+        radial-gradient(circle at 82% 18%, rgba(224,112,50,.32), transparent 22%),
+        radial-gradient(circle at 68% 78%, rgba(169,50,50,.28), transparent 28%),
+        var(--bg);
+      color:var(--paper);
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height:1.55;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.13;
+      background-image:radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1px);
+      background-size:48px 48px;
+      mix-blend-mode:screen;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+    nav{
+      position:fixed;z-index:20;top:0;left:0;right:0;
+      background:rgba(7,9,18,.84);backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    nav .inner{max-width:1200px;margin:auto;padding:13px 22px;display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .brand{font-size:16px;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+    .links{display:flex;gap:16px;font-size:14px;color:var(--muted);flex-wrap:wrap;align-items:center}
+    .links a:hover{color:var(--paper)}
+    .lang{display:flex;gap:6px}
+    .lang button{
+      background:transparent;color:var(--muted);border:1px solid var(--line);
+      border-radius:999px;padding:7px 9px;cursor:pointer;font-family:inherit
+    }
+    .lang button.active{color:#111;background:var(--gold);border-color:var(--gold)}
+    header{
+      min-height:96vh;
+      display:flex;
+      align-items:center;
+      background:
+        linear-gradient(90deg, rgba(7,9,18,.94), rgba(7,9,18,.48)),
+        linear-gradient(180deg, rgba(7,9,18,.04), rgba(7,9,18,1)),
+        url('assets/hero.jpg');
+      background-size:cover;
+      background-position:center;
+    }
+    .hero{max-width:930px;padding-top:86px}
+    .eyebrow{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:13px;margin-bottom:18px}
+    h1{font-size:clamp(42px,7.4vw,92px);line-height:.93;margin:0 0 24px;letter-spacing:-.05em}
+    h2{font-size:clamp(30px,4.2vw,58px);line-height:1;margin:0 0 22px;letter-spacing:-.035em}
+    h3{font-size:25px;margin:0 0 12px}
+    p{font-size:18px;color:#eadcc2;margin:0 0 18px}
+    .lead{font-size:24px;color:var(--paper);max-width:860px}
+    .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+    .btn{
+      display:inline-block;padding:14px 20px;border:1px solid var(--paper);
+      border-radius:999px;text-transform:uppercase;letter-spacing:.12em;font-size:12px
+    }
+    .btn.gold{background:var(--gold);border-color:var(--gold);color:#15120e}
+    section{padding:88px 0;border-top:1px solid var(--line);position:relative}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.058), rgba(255,255,255,.018));
+      border:1px solid var(--line);border-radius:28px;padding:28px;
+      box-shadow:var(--shadow)
+    }
+    .span3{grid-column:span 3}.span4{grid-column:span 4}.span5{grid-column:span 5}.span6{grid-column:span 6}.span7{grid-column:span 7}.span8{grid-column:span 8}.span12{grid-column:span 12}
+    .tag{display:inline-block;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.16em;margin-bottom:12px}
+    .quote{font-size:34px;line-height:1.12;color:var(--paper)}
+    .district{border-left:3px solid var(--gold);padding-left:20px}
+    .items{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+    .item{background:rgba(13,19,36,.92);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+    .item .photo{height:230px;background-size:cover;background-position:center;background-image:linear-gradient(135deg,var(--blue),#0e1721 45%,var(--orange))}
+    .item .txt{padding:20px}
+    .small{font-size:15px;color:var(--muted)}
+    .image-card{
+      min-height:390px;border-radius:28px;background-size:cover;background-position:center;
+      border:1px solid var(--line);overflow:hidden;position:relative
+    }
+    .cosmos-panel{
+      background:
+        radial-gradient(circle at 15% 25%, rgba(22,74,134,.78), transparent 28%),
+        radial-gradient(circle at 80% 22%, rgba(224,112,50,.50), transparent 18%),
+        radial-gradient(circle at 70% 75%, rgba(169,50,50,.44), transparent 24%),
+        linear-gradient(135deg, #07182f, #11131b 60%, #230d0d);
+    }
+    .gallery{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px;margin-top:28px}
+    .gallery div{min-height:240px;border-radius:24px;background-size:cover;background-position:center;border:1px solid var(--line)}
+    .curators{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .number{font-size:54px;line-height:1;color:var(--gold);margin-bottom:12px}
+    footer{padding:50px 0;color:var(--muted);border-top:1px solid var(--line)}
+    [data-lang]{display:none}
+    [data-lang].active{display:block}
+    @media(max-width:920px){
+      .span3,.span4,.span5,.span6,.span7,.span8{grid-column:span 12}
+      .items{grid-template-columns:1fr 1fr}
+      .gallery,.curators{grid-template-columns:1fr}
+      .links a{display:none}
+      section{padding:62px 0}
+      .quote{font-size:27px}
+    }
+    @media(max-width:560px){
+      .items{grid-template-columns:1fr}
+      .brand{font-size:13px}
+      .lang button{padding:6px 7px}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="brand" href="https://tutejszyvibe.com">Tutejszy Vibe · Cosmos</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#districts">Districts</a>
+      <a href="#collection">Collection</a>
+      <a href="#curators">Curators</a>
+      <a href="#contact">Contact</a>
+      <div class="lang">
+        <button class="active" onclick="setLang('pl')">PL</button>
+        <button onclick="setLang('ru')">RU</button>
+        <button onclick="setLang('be')">BE</button>
+        <button onclick="setLang('en')">EN</button>
+        <button onclick="setLang('de')">DE</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- POLISH -->
+<div data-lang="pl" class="active">
+<header>
+  <div class="wrap hero">
+    <div class="eyebrow">Wystawa · Antique Boutique · Wrocław</div>
+    <h1>Cosmos Collection</h1>
+    <p class="lead">8 obiektów. 8 punktów uwagi. Niebieskie szkło, czerwone gwiazdy i przedmioty z historią dla nowoczesnych mieszkań, gabinetów i przestrzeni.</p>
+    <div class="btns"><a class="btn gold" href="#collection">Zobacz kolekcję</a><a class="btn" href="https://tutejszyvibe.com">TutejszyVibe.com</a></div>
+  </div>
+</header>
+<section id="about"><div class="wrap grid"><div class="span7"><h2>Przestrzeń staje się twoja, kiedy tworzysz ją świadomie.</h2><p>Ta wystawa powstała z fascynacji niebieskim szkłem. Niebieski zawsze kojarzył mi się z kosmosem, morzem, spokojem i nieskończonością.</p><p>Kiedy oko wraca do niebieskiego przedmiotu, codzienny hałas na chwilę znika. Przestajesz myśleć o rutynie. Zaczynasz myśleć o niebie, wodzie, powietrzu, gwiazdach i przestrzeni.</p><p>Czerwone i pomarańczowe akcenty są jak słońce, płonące gwiazdy i czerwone planety. Dzięki nim kolekcja nie jest chłodna — ma ciepło, napięcie i życie.</p></div><div class="span5 card cosmos-panel"><div class="number">8</div><h3>Objects / Points / Fragments</h3><p>Osiem wybranych przedmiotów tworzy mały kosmos: nie jako zwykła dekoracja, ale jako wystawa dla domu.</p><p class="small">Mieszkanie, biuro, gabinet, studio, nowy apartament nad Odrą — każdy z tych miejsc potrzebuje własnej historii.</p></div></div></section>
+<section><div class="wrap grid"><div class="span7"><h2>Nie IKEA. Nie przypadkowy vintage. Obiekt z pamięcią.</h2><p>Zwykłą rzecz łatwo kupić w dużym sklepie. Ale ona często nie ma biografii. Nie zatrzymuje wzroku. Nie daje odpoczynku.</p><p>Jeden dobrze wybrany przedmiot potrafi zmienić całe wnętrze. Może ocieplić nową przestrzeń, nadać jej rytm, ciszę, głębię i charakter.</p></div><div class="span5 card"><span class="tag">For modern interiors</span><h3>Dom · Gabinet · Studio</h3><p>To nie jest kolekcja tylko do mieszkania. To obiekty do przestrzeni, w której pracujesz, myślisz, odpoczywasz i przyjmujesz ludzi.</p></div></div></section>
+<section id="districts"><div class="wrap grid"><div class="span5"><h2>Nadodrze, Ołbin, Kleczków. Miasto, które zostawia ślad.</h2><p>Tutejszy Vibe wyrósł z miłości do Wrocławia: z zachwytu, szacunku i uważności wobec miasta, jego podwórek, kamienic, przedmiotów i historii.</p></div><div class="span7 grid"><div class="span12 card district"><h3>Nadodrze</h3><p>Warsztaty, podwórka, stare kamienice i nowa energia. Przedmiot staje się tutaj przedłużeniem ulicy.</p></div><div class="span12 card district"><h3>Ołbin</h3><p>Zieleń, gęstość, architektura i miejska melancholia. Dzielnica, która dobrze rozumie szkło, drewno i ciszę.</p></div><div class="span12 card district"><h3>Kleczków</h3><p>Odra, nowe inwestycje i industrialna pamięć. Idealne tło dla rozmowy nowego wnętrza ze starą rzeczą.</p></div></div></div></section>
+<section id="collection"><div class="wrap"><div class="grid"><div class="span6"><span class="tag">May 2026</span><h2>Cosmos Collection</h2><p>Kosmos to nieskończone morze gwiazd. Dlatego kolekcja łączy niebieskie szkło z czerwonymi i pomarańczowymi tonami: jak światło, planety i słońce wewnątrz ciemności.</p><p>Każdy obiekt ma miejsce na zdjęcie, opis, cenę, historię i wizualizację w przestrzeni.</p></div><div class="span6 card"><p class="quote">Nowe mieszkanie potrzebuje starej duszy.</p></div></div><div class="items"><div class="item"><div class="photo" style="background-image:url('assets/object-1.jpg')"></div><div class="txt"><h3>Object 1</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-2.jpg')"></div><div class="txt"><h3>Object 2</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-3.jpg')"></div><div class="txt"><h3>Object 3</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-4.jpg')"></div><div class="txt"><h3>Object 4</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-5.jpg')"></div><div class="txt"><h3>Object 5</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-6.jpg')"></div><div class="txt"><h3>Object 6</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-7.jpg')"></div><div class="txt"><h3>Object 7</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-8.jpg')"></div><div class="txt"><h3>Object 8</h3><p class="small">Miejsce na nazwę, historię, cenę i krótki opis przedmiotu.</p></div></div></div><div class="gallery"><div style="background-image:url('assets/set-home.jpg')"></div><div style="background-image:url('assets/set-office.jpg')"></div><div style="background-image:url('assets/set-studio.jpg')"></div></div></div></section>
+<section><div class="wrap grid"><div class="span6 image-card" style="background-image:url('assets/interior-ai.jpg')"></div><div class="span6"><h2>Zobacz obiekt w przestrzeni.</h2><p>Tworzymy wizualizacje AI: jak szkło, obraz albo przedmiot może wyglądać w mieszkaniu, gabinecie, studio lub nowym apartamencie nad Odrą.</p><p>Dzięki temu kupujesz nie tylko rzecz. Kupujesz relację między obiektem a przestrzenią.</p></div></div></section>
+<section id="curators"><div class="wrap"><h2>Curated by Pavel Kakhnovich & Kinga Podgajna</h2><div class="curators"><div class="card"><h3>Pavel Kakhnovich</h3><p>Przede wszystkim autor idei Tutejszy Vibe: nauczyciel teorii gier i pokera, profesjonalny pokerzysta, przedsiębiorca, founder i CEO projektu, twórca aplikacji Tutejszy Vibe oraz uczestnik wydarzeń i festiwali kulturalnych.</p><p>Projekt narodził się z ogromnej miłości do miasta — z podziwu, szacunku i pragnienia opowiadania Wrocławia przez miejsca, rzeczy, spacery i atmosferę.</p></div><div class="card"><h3>Kinga Podgajna</h3><p>Kuratorka, absolwentka historii sztuki, odpowiedzialna za wybór obiektów, ich kontekst estetyczny oraz myślenie o tym, jak rzecz pracuje w nowoczesnej przestrzeni.</p><p>Razem wybieramy nie “stare rzeczy”, ale przedmioty, które mogą wejść w dialog z domem, gabinetem, światłem i codziennym życiem.</p></div></div></div></section>
+<section id="contact"><div class="wrap grid"><div class="span6"><h2>Bez zimnego sklepu. Z historią i kontaktem.</h2><p>Napisz do nas. Pokażemy obiekty, opowiemy historię i pomożemy dobrać rzecz do przestrzeni.</p></div><div class="span6 card"><h3>Kontakt</h3><p><b>Website:</b> TutejszyVibe.com</p><p><b>Instagram:</b> @tutejszyvibe</p><p><b>Telegram:</b> @Hlbtyr</p><div class="btns"><a class="btn gold" href="https://tutejszyvibe.com">Website</a><a class="btn" href="https://instagram.com/tutejszyvibe">Instagram</a></div></div></div></section>
+</div>
+
+<!-- RUSSIAN -->
+<div data-lang="ru">
+<header><div class="wrap hero"><div class="eyebrow">Выставка · Antique Boutique · Wrocław</div><h1>Cosmos Collection</h1><p class="lead">8 предметов. 8 точек внимания. Голубое стекло, красные звёзды и вещи с историей для современных квартир, кабинетов и пространств.</p><div class="btns"><a class="btn gold" href="#collection">Смотреть коллекцию</a><a class="btn" href="https://tutejszyvibe.com">TutejszyVibe.com</a></div></div></header>
+<section><div class="wrap grid"><div class="span7"><h2>Пространство становится твоим, когда ты оформляешь его осознанно.</h2><p>Эта выставка родилась из любви к голубому стеклу. Синий всегда ассоциировался у меня с космосом, морем, спокойствием и бесконечностью.</p><p>Когда глаз возвращается к синему предмету, бытовой шум исчезает. Ты перестаёшь думать о рутине и начинаешь думать о небе, воде, воздухе, звёздах и пространстве.</p><p>Красные и оранжевые оттенки — это солнце, горящие звёзды и красные планеты. Они добавляют коллекции тепло и жизнь.</p></div><div class="span5 card cosmos-panel"><div class="number">8</div><h3>Предметов / точек / фрагментов</h3><p>Восемь выбранных предметов создают маленький космос: не как декор, а как выставка для дома.</p></div></div></section>
+<section><div class="wrap grid"><div class="span7"><h2>Не IKEA. Не случайный винтаж. Предмет с памятью.</h2><p>Обычную вещь легко купить в большом магазине. Но она часто не имеет биографии, не останавливает взгляд и не даёт дому глубины.</p><p>Один хорошо выбранный предмет может изменить всё пространство: дать тепло, ритм, тишину и характер.</p></div><div class="span5 card"><h3>Дом · кабинет · студия</h3><p>Это коллекция не только для квартиры. Это предметы для пространства, где ты работаешь, думаешь, отдыхаешь и принимаешь людей.</p></div></div></section>
+<section><div class="wrap grid"><div class="span5"><h2>Nadodrze, Ołbin, Kleczków. Город, который оставляет след.</h2><p>Tutejszy Vibe вырос из любви к Вроцлаву: из восхищения, уважения и внимательности к дворам, каменицам, предметам и историям.</p></div><div class="span7 grid"><div class="span12 card district"><h3>Nadodrze</h3><p>Мастерские, дворы, старые каменицы и новая энергия.</p></div><div class="span12 card district"><h3>Ołbin</h3><p>Зелень, плотность, архитектура и городская меланхолия.</p></div><div class="span12 card district"><h3>Kleczków</h3><p>Одра, новые инвестиции и индустриальная память.</p></div></div></div></section>
+<section><div class="wrap"><div class="grid"><div class="span6"><span class="tag">May 2026</span><h2>Cosmos Collection</h2><p>Космос — это бесконечное море звёзд. Поэтому коллекция соединяет голубое стекло с красными и оранжевыми тонами: свет, планеты и солнце внутри темноты.</p><p>Каждый объект имеет место для фото, описания, цены, истории и визуализации в пространстве.</p></div><div class="span6 card"><p class="quote">Новой квартире нужна старая душа.</p></div></div><div class="items"><div class="item"><div class="photo" style="background-image:url('assets/object-1.jpg')"></div><div class="txt"><h3>Object 1</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-2.jpg')"></div><div class="txt"><h3>Object 2</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-3.jpg')"></div><div class="txt"><h3>Object 3</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-4.jpg')"></div><div class="txt"><h3>Object 4</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-5.jpg')"></div><div class="txt"><h3>Object 5</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-6.jpg')"></div><div class="txt"><h3>Object 6</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-7.jpg')"></div><div class="txt"><h3>Object 7</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-8.jpg')"></div><div class="txt"><h3>Object 8</h3><p class="small">Место для названия, истории, цены и описания предмета.</p></div></div></div></div></section>
+<section><div class="wrap grid"><div class="span6 image-card" style="background-image:url('assets/interior-ai.jpg')"></div><div class="span6"><h2>Посмотри предмет в пространстве.</h2><p>Мы создаём AI-визуализации: как стекло, картина или объект будут выглядеть в квартире, кабинете, студии или новом апартаменте у Одры.</p></div></div></section>
+<section><div class="wrap"><h2>Curated by Pavel Kakhnovich & Kinga Podgajna</h2><div class="curators"><div class="card"><h3>Pavel Kakhnovich</h3><p>Преподаватель теории игр и покера, профессиональный игрок в покер, предприниматель, founder и CEO Tutejszy Vibe, создатель приложения Tutejszy Vibe, участник культурных фестивалей и городских проектов.</p><p>Tutejszy Vibe родился из огромной любви к городу, из восхищения, уважения и принятия Вроцлава.</p></div><div class="card"><h3>Kinga Podgajna</h3><p>Куратор, выпускница истории искусств, отвечает за выбор объектов, эстетический контекст и то, как предмет работает в современном пространстве.</p></div></div></div></section>
+<section><div class="wrap grid"><div class="span6"><h2>Прямой контакт.</h2><p>Напиши нам. Покажем предметы, расскажем историю и поможем подобрать вещь под пространство.</p></div><div class="span6 card"><h3>Контакты</h3><p><b>Website:</b> TutejszyVibe.com</p><p><b>Instagram:</b> @tutejszyvibe</p><p><b>Telegram:</b> @Hlbtyr</p></div></div></section>
+</div>
+
+<!-- BELARUSIAN -->
+<div data-lang="be">
+<header><div class="wrap hero"><div class="eyebrow">Выстава · Antique Boutique · Wrocław</div><h1>Cosmos Collection</h1><p class="lead">8 прадметаў. 8 пунктаў увагі. Блакітнае шкло, чырвоныя зоркі і рэчы з гісторыяй для сучасных прастораў.</p><div class="btns"><a class="btn gold" href="#collection">Глядзець калекцыю</a><a class="btn" href="https://tutejszyvibe.com">TutejszyVibe.com</a></div></div></header>
+<section><div class="wrap grid"><div class="span7"><h2>Прастора становіцца тваёй, калі ты ствараеш яе свядома.</h2><p>Гэта выстава нарадзілася з любові да блакітнага шкла. Сіні колер заўсёды асацыяваўся ў мяне з космасам, морам, спакоем і бясконцасцю.</p><p>Калі вока вяртаецца да сіняга прадмета, штодзённы шум знікае. Ты пачынаеш думаць пра неба, ваду, паветра, зоркі і прастору.</p><p>Чырвоныя і аранжавыя адценні — гэта сонца, гарачыя зоркі і чырвоныя планеты.</p></div><div class="span5 card cosmos-panel"><div class="number">8</div><h3>Прадметаў / кропак / фрагментаў</h3><p>Восем выбраных прадметаў ствараюць маленькі космас — не як дэкор, а як выстава для дома.</p></div></div></section>
+<section><div class="wrap grid"><div class="span7"><h2>Не IKEA. Не выпадковы вінтаж. Прадмет з памяццю.</h2><p>Звычайную рэч лёгка купіць у вялікай краме. Але яна часта не мае біяграфіі і не дадае дому глыбіні.</p><p>Адзін добра выбраны прадмет можа змяніць усю прастору: даць цяпло, рытм, цішыню і характар.</p></div><div class="span5 card"><h3>Дом · кабінет · студыя</h3><p>Гэта прадметы для прасторы, дзе ты працуеш, думаеш, адпачываеш і прымаеш людзей.</p></div></div></section>
+<section><div class="wrap grid"><div class="span5"><h2>Nadodrze, Ołbin, Kleczków. Горад, які пакідае след.</h2><p>Tutejszy Vibe вырас з любові да Вроцлава: з захаплення, павагі і ўвагі да двароў, камяніц, прадметаў і гісторый.</p></div><div class="span7 grid"><div class="span12 card district"><h3>Nadodrze</h3><p>Майстэрні, двары, старыя камяніцы і новая энергія.</p></div><div class="span12 card district"><h3>Ołbin</h3><p>Зеляніна, шчыльнасць, архітэктура і гарадская меланхолія.</p></div><div class="span12 card district"><h3>Kleczków</h3><p>Одра, новыя інвестыцыі і індустрыяльная памяць.</p></div></div></div></section>
+<section><div class="wrap"><div class="grid"><div class="span6"><span class="tag">May 2026</span><h2>Cosmos Collection</h2><p>Космас — гэта бясконцае мора зорак. Таму калекцыя злучае блакітнае шкло з чырвонымі і аранжавымі тонамі.</p></div><div class="span6 card"><p class="quote">Новай кватэры патрэбная старая душа.</p></div></div><div class="items"><div class="item"><div class="photo" style="background-image:url('assets/object-1.jpg')"></div><div class="txt"><h3>Object 1</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-2.jpg')"></div><div class="txt"><h3>Object 2</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-3.jpg')"></div><div class="txt"><h3>Object 3</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-4.jpg')"></div><div class="txt"><h3>Object 4</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-5.jpg')"></div><div class="txt"><h3>Object 5</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-6.jpg')"></div><div class="txt"><h3>Object 6</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-7.jpg')"></div><div class="txt"><h3>Object 7</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-8.jpg')"></div><div class="txt"><h3>Object 8</h3><p class="small">Месца для назвы, гісторыі, цаны і апісання прадмета.</p></div></div></div></div></section>
+<section><div class="wrap"><h2>Curated by Pavel Kakhnovich & Kinga Podgajna</h2><div class="curators"><div class="card"><h3>Pavel Kakhnovich</h3><p>Выкладчык тэорыі гульняў і покера, прафесійны гулец у покер, прадпрымальнік, founder і CEO Tutejszy Vibe, стваральнік прыкладання Tutejszy Vibe.</p></div><div class="card"><h3>Kinga Podgajna</h3><p>Куратарка, выпускніца гісторыі мастацтва, адказная за выбар аб’ектаў і эстэтычны кантэкст.</p></div></div></div></section>
+<section><div class="wrap grid"><div class="span6"><h2>Прамы кантакт.</h2><p>Напішы нам. Пакажам прадметы, раскажам гісторыю і дапаможам падабраць рэч.</p></div><div class="span6 card"><h3>Кантакты</h3><p><b>Website:</b> TutejszyVibe.com</p><p><b>Instagram:</b> @tutejszyvibe</p><p><b>Telegram:</b> @Hlbtyr</p></div></div></section>
+</div>
+
+<!-- ENGLISH -->
+<div data-lang="en">
+<header><div class="wrap hero"><div class="eyebrow">Exhibition · Antique Boutique · Wrocław</div><h1>Cosmos Collection</h1><p class="lead">8 objects. 8 points of attention. Blue glass, red stars and objects with memory for modern apartments, offices and living spaces.</p><div class="btns"><a class="btn gold" href="#collection">View collection</a><a class="btn" href="https://tutejszyvibe.com">TutejszyVibe.com</a></div></div></header>
+<section><div class="wrap grid"><div class="span7"><h2>Space becomes yours when you shape it consciously.</h2><p>This exhibition was born from a fascination with blue glass. Blue has always been connected for me with the cosmos, the sea, silence and infinity.</p><p>When your eyes return to a blue object, everyday noise disappears for a moment. You stop thinking about routine things. You start thinking about the sky, water, air, stars and space itself.</p><p>Red and orange accents are like sunlight, burning stars and red planets. They make the collection warm, alive and emotionally charged.</p></div><div class="span5 card cosmos-panel"><div class="number">8</div><h3>Objects / points / fragments</h3><p>Eight selected objects create a small cosmos — not as decoration, but as an exhibition for a home.</p></div></div></section>
+<section><div class="wrap grid"><div class="span7"><h2>Not IKEA. Not random vintage. An object with memory.</h2><p>A simple object is easy to buy in a big store. But it often has no biography. It does not stop the eye. It does not give the room depth.</p><p>One carefully chosen object can change an entire interior. It can bring warmth, rhythm, silence and character.</p></div><div class="span5 card"><h3>Home · office · studio</h3><p>This is not only a collection for apartments. These are objects for spaces where you work, think, rest and welcome people.</p></div></div></section>
+<section><div class="wrap grid"><div class="span5"><h2>Nadodrze, Ołbin, Kleczków. A city that leaves traces.</h2><p>Tutejszy Vibe grew out of love for Wrocław — admiration, respect and attention to its courtyards, tenement houses, objects and stories.</p></div><div class="span7 grid"><div class="span12 card district"><h3>Nadodrze</h3><p>Workshops, courtyards, old tenement houses and new urban energy.</p></div><div class="span12 card district"><h3>Ołbin</h3><p>Green density, architecture and urban melancholy.</p></div><div class="span12 card district"><h3>Kleczków</h3><p>The Odra river, new developments and industrial memory.</p></div></div></div></section>
+<section><div class="wrap"><div class="grid"><div class="span6"><span class="tag">May 2026</span><h2>Cosmos Collection</h2><p>The cosmos is an endless sea of stars. That is why the collection combines blue glass with red and orange tones: light, planets and sun inside darkness.</p><p>Each object has space for a photo, story, price, description and AI visualisation inside an interior.</p></div><div class="span6 card"><p class="quote">A new apartment needs an old soul.</p></div></div><div class="items"><div class="item"><div class="photo" style="background-image:url('assets/object-1.jpg')"></div><div class="txt"><h3>Object 1</h3><p class="small">Place for name, story, price and short object description.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-2.jpg')"></div><div class="txt"><h3>Object 2</h3><p class="small">Place for name, story, price and short object description.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-3.jpg')"></div><div class="txt"><h3>Object 3</h3><p class="small">Place for name, story, price and short object description.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-4.jpg')"></div><div class="txt"><h3>Object 4</h3><p class="small">Place for name, story, price and short object description.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-5.jpg')"></div><div class="txt"><h3>Object 5</h3><p class="small">Place for name, story, price and short object description.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-6.jpg')"></div><div class="txt"><h3>Object 6</h3><p class="small">Place for name, story, price and short object description.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-7.jpg')"></div><div class="txt"><h3>Object 7</h3><p class="small">Place for name, story, price and short object description.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-8.jpg')"></div><div class="txt"><h3>Object 8</h3><p class="small">Place for name, story, price and short object description.</p></div></div></div></div></section>
+<section><div class="wrap grid"><div class="span6 image-card" style="background-image:url('assets/interior-ai.jpg')"></div><div class="span6"><h2>See the object inside a space.</h2><p>We create AI visualisations showing how glass, painting or object can look inside an apartment, office, studio or new home by the Odra river.</p></div></div></section>
+<section><div class="wrap"><h2>Curated by Pavel Kakhnovich & Kinga Podgajna</h2><div class="curators"><div class="card"><h3>Pavel Kakhnovich</h3><p>Game theory and poker teacher, professional poker player, entrepreneur, founder and CEO of Tutejszy Vibe, creator of the Tutejszy Vibe application, participant of cultural festivals and urban projects.</p><p>Tutejszy Vibe was born from deep love for the city — from admiration, respect and the desire to tell Wrocław through places, objects, walks and atmosphere.</p></div><div class="card"><h3>Kinga Podgajna</h3><p>Curator and art history graduate, responsible for object selection, aesthetic context and the way each object works inside a modern space.</p></div></div></div></section>
+<section><div class="wrap grid"><div class="span6"><h2>Direct contact.</h2><p>Write to us. We will show the objects, tell their story and help choose a piece for your space.</p></div><div class="span6 card"><h3>Contact</h3><p><b>Website:</b> TutejszyVibe.com</p><p><b>Instagram:</b> @tutejszyvibe</p><p><b>Telegram:</b> @Hlbtyr</p></div></div></section>
+</div>
+
+<!-- GERMAN -->
+<div data-lang="de">
+<header><div class="wrap hero"><div class="eyebrow">Ausstellung · Antique Boutique · Wrocław</div><h1>Cosmos Collection</h1><p class="lead">8 Objekte. 8 Aufmerksamkeitspunkte. Blaues Glas, rote Sterne und Dinge mit Geschichte für moderne Wohnungen, Büros und Räume.</p><div class="btns"><a class="btn gold" href="#collection">Kollektion ansehen</a><a class="btn" href="https://tutejszyvibe.com">TutejszyVibe.com</a></div></div></header>
+<section><div class="wrap grid"><div class="span7"><h2>Ein Raum wird deiner, wenn du ihn bewusst gestaltest.</h2><p>Diese Ausstellung entstand aus der Faszination für blaues Glas. Blau war für mich immer mit Kosmos, Meer, Ruhe und Unendlichkeit verbunden.</p><p>Wenn der Blick zu einem blauen Objekt zurückkehrt, verschwindet der Alltagslärm für einen Moment. Man denkt nicht mehr an Routine, sondern an Himmel, Wasser, Luft, Sterne und Raum.</p><p>Rote und orange Akzente wirken wie Sonne, brennende Sterne und rote Planeten. Sie geben der Kollektion Wärme, Spannung und Leben.</p></div><div class="span5 card cosmos-panel"><div class="number">8</div><h3>Objekte / Punkte / Fragmente</h3><p>Acht ausgewählte Objekte bilden einen kleinen Kosmos — nicht als Dekoration, sondern als Ausstellung für ein Zuhause.</p></div></div></section>
+<section><div class="wrap grid"><div class="span7"><h2>Nicht IKEA. Kein zufälliger Vintage. Ein Objekt mit Erinnerung.</h2><p>Ein gewöhnlicher Gegenstand ist leicht in einem großen Geschäft zu kaufen. Aber oft hat er keine Biografie, hält den Blick nicht fest und gibt dem Raum keine Tiefe.</p><p>Ein sorgfältig ausgewähltes Objekt kann ein ganzes Interieur verändern. Es bringt Wärme, Rhythmus, Stille und Charakter.</p></div><div class="span5 card"><h3>Zuhause · Büro · Studio</h3><p>Diese Kollektion ist nicht nur für Wohnungen gedacht. Es sind Objekte für Räume, in denen man arbeitet, denkt, ruht und Menschen empfängt.</p></div></div></section>
+<section><div class="wrap grid"><div class="span5"><h2>Nadodrze, Ołbin, Kleczków. Eine Stadt, die Spuren hinterlässt.</h2><p>Tutejszy Vibe entstand aus Liebe zu Wrocław — aus Bewunderung, Respekt und Aufmerksamkeit für Höfe, Mietshäuser, Objekte und Geschichten.</p></div><div class="span7 grid"><div class="span12 card district"><h3>Nadodrze</h3><p>Werkstätten, Höfe, alte Mietshäuser und neue urbane Energie.</p></div><div class="span12 card district"><h3>Ołbin</h3><p>Grüne Dichte, Architektur und urbane Melancholie.</p></div><div class="span12 card district"><h3>Kleczków</h3><p>Die Oder, neue Wohnprojekte und industrielle Erinnerung.</p></div></div></div></section>
+<section><div class="wrap"><div class="grid"><div class="span6"><span class="tag">Mai 2026</span><h2>Cosmos Collection</h2><p>Der Kosmos ist ein endloses Meer aus Sternen. Deshalb verbindet die Kollektion blaues Glas mit roten und orangefarbenen Tönen: Licht, Planeten und Sonne in der Dunkelheit.</p><p>Jedes Objekt hat Platz für Foto, Geschichte, Preis, Beschreibung und AI-Visualisierung im Raum.</p></div><div class="span6 card"><p class="quote">Eine neue Wohnung braucht eine alte Seele.</p></div></div><div class="items"><div class="item"><div class="photo" style="background-image:url('assets/object-1.jpg')"></div><div class="txt"><h3>Object 1</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-2.jpg')"></div><div class="txt"><h3>Object 2</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-3.jpg')"></div><div class="txt"><h3>Object 3</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-4.jpg')"></div><div class="txt"><h3>Object 4</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-5.jpg')"></div><div class="txt"><h3>Object 5</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-6.jpg')"></div><div class="txt"><h3>Object 6</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-7.jpg')"></div><div class="txt"><h3>Object 7</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div><div class="item"><div class="photo" style="background-image:url('assets/object-8.jpg')"></div><div class="txt"><h3>Object 8</h3><p class="small">Platz für Name, Geschichte, Preis und kurze Beschreibung.</p></div></div></div></div></section>
+<section><div class="wrap grid"><div class="span6 image-card" style="background-image:url('assets/interior-ai.jpg')"></div><div class="span6"><h2>Sieh das Objekt im Raum.</h2><p>Wir erstellen AI-Visualisierungen, die zeigen, wie Glas, Bild oder Objekt in einer Wohnung, einem Büro, Studio oder neuen Apartment an der Oder aussehen kann.</p></div></div></section>
+<section><div class="wrap"><h2>Curated by Pavel Kakhnovich & Kinga Podgajna</h2><div class="curators"><div class="card"><h3>Pavel Kakhnovich</h3><p>Lehrer für Spieltheorie und Poker, professioneller Pokerspieler, Unternehmer, Gründer und CEO von Tutejszy Vibe, Entwickler der Tutejszy Vibe App, Teilnehmer an Kulturfestivals und urbanen Projekten.</p><p>Tutejszy Vibe entstand aus tiefer Liebe zur Stadt — aus Bewunderung, Respekt und dem Wunsch, Wrocław durch Orte, Objekte, Spaziergänge und Atmosphäre zu erzählen.</p></div><div class="card"><h3>Kinga Podgajna</h3><p>Kuratorin und Absolventin der Kunstgeschichte, verantwortlich für Objektauswahl, ästhetischen Kontext und die Wirkung jedes Objekts im modernen Raum.</p></div></div></div></section>
+<section><div class="wrap grid"><div class="span6"><h2>Direkter Kontakt.</h2><p>Schreib uns. Wir zeigen die Objekte, erzählen ihre Geschichte und helfen bei der Auswahl eines Stücks für deinen Raum.</p></div><div class="span6 card"><h3>Kontakt</h3><p><b>Website:</b> TutejszyVibe.com</p><p><b>Instagram:</b> @tutejszyvibe</p><p><b>Telegram:</b> @Hlbtyr</p></div></div></section>
+</div>
+
+<footer><div class="wrap">Tutejszy Vibe · Cosmos Collection · curated by Pavel Kakhnovich & Kinga Podgajna · Wrocław</div></footer>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('[data-lang]').forEach(el=>el.classList.remove('active'));
+  document.querySelector('[data-lang="'+lang+'"]').classList.add('active');
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.lang button').forEach(b=>{
+    if(b.textContent.toLowerCase()===lang) b.classList.add('active');
+  });
+  document.documentElement.lang = lang;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
